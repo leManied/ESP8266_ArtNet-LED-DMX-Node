@@ -83,3 +83,7 @@ These boards use strange numbering that doesn't match the ESP8266 numbering.  He
 
 ## Special thanks to
 [Matthew Tong](https://github.com/mtongnz) for the great work this fork is based upon.
+
+
+
+work with arduino esp8266 board version 2.4.2 and arduinojson 5.13.5
