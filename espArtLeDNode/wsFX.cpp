@@ -208,7 +208,7 @@ void pixPatterns::StaticUpdate(void) {
     else
       c = Colour2;
     
-    pixDriver->setPixel(Port, p, c);
+    pixDriver->setPixel(Port, p, c, deviceSettings.portApixOrder);
   }
   Increment();
 }
@@ -235,7 +235,7 @@ void pixPatterns::RainbowCycleUpdate(void) {
       uint8_t g = map(Green(c), 0, 255, 0, Intensity);
       uint8_t b = map(Blue(c), 0, 255, 0, Intensity);
       
-      pixDriver->setPixel(Port, p, Colour(r, g, b));
+      pixDriver->setPixel(Port, p, Colour(r, g, b), portApixOrder);
     }
   }
   Increment();
@@ -259,9 +259,9 @@ void pixPatterns::TheaterChaseUpdate(void) {
   
   for(int i = 0; i < pixDriver->numPixels(Port); i++) {
     if ((i + a) % mSize == 0)
-      pixDriver->setPixel(Port, i, Colour1);
+      pixDriver->setPixel(Port, i, Colour1, portApixOrder, portApixOrder);
     else
-      pixDriver->setPixel(Port, i, Colour2);
+      pixDriver->setPixel(Port, i, Colour2, portApixOrder, portApixOrder);
   }
   Increment();
 }
@@ -284,14 +284,14 @@ void pixPatterns::TwinkleUpdate(void) {
   // Clear strip
   if (Index % 3 == 0 || Speed < 20 || Speed > 235) {
     for (uint16_t i = 0; i < pixDriver->numPixels(Port); i++)
-      pixDriver->setPixel(Port, i, Colour1);
+      pixDriver->setPixel(Port, i, Colour1, portApixOrder);
   }
 
   // Make twinkles
   if (Index % 3 == 0 && Speed > 20 && Speed < 235) {
     uint16_t numTwinks = map(Size, 0, 255, 1, (pixDriver->numPixels(Port) / 10));
     for (uint8_t n = 0; n < numTwinks; n++)
-      pixDriver->setPixel(Port, random(0, pixDriver->numPixels(Port)), Colour2);
+      pixDriver->setPixel(Port, random(0, pixDriver->numPixels(Port)), Colour2, portApixOrder);
   }
   
   Increment();

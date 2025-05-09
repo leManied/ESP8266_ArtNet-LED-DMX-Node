@@ -113,7 +113,17 @@ const char PROGMEM mainPage[] = "<!DOCTYPE html><meta content='text/html; charse
     #ifndef ONE_PORT
       "<li><a href='javascript: menuClick(5)'>Port B</a>"
     #endif
-  "<li><a href='javascript: menuClick(6)'>Scenes</a><li><a href='javascript: menuClick(7)'>Firmware</a><li class=last><a href='javascript: reboot()'>Reboot</a></ul><div class=author></div></div><div class='main section'><div class=hide name=error><h2>Error</h2><p class=center>There was an error communicating with the device. Refresh the page and try again.</div><div class=show name=sections><h2>Fetching Data</h2><p class=center>Fetching data from device. If this message is still here in 15 seconds, try refreshing the page or clicking the menu option again.</div><div class=hide name=sections><h2>Device Status</h2><p class=left>Device Name:<p class=right name=nodeName><p class=left>MAC Address:<p class=right name=macAddress><p class=left>Wifi Status:<p class=right name=wifiStatus><p class=left>IP Address:<p class=right name=ipAddressT><p class=left>Subnet Address:<p class=right name=subAddressT><p class=left>Port A:<p class=right name=portAStatus>"
+  "<li><a href='javascript: menuClick(6)'>Scenes</a><li><a href='javascript: menuClick(7)'>Firmware</a><li class=last><a href='javascript: reboot()'>Reboot</a></ul><div class=author></div></div><div class='main section'><div class=hide name=error><h2>Error</h2><p class=center>There was an error communicating with the device. Refresh the page and try again.</div><div class=show name=sections><h2>Fetching Data</h2><p class=center>Fetching data from device. If this message is still here in 15 seconds, try refreshing the page or clicking the menu option again.</div><div class=hide name=sections><h2>Device Status</h2><p class=left>Device Name:<p class=right name=nodeName><p class=left>MAC Address:<p class=right name=macAddress><p class=left>Wifi Status:<p class=right name=wifiStatus><p class=left>IP Address:<p class=right name=ipAddressT><p class=left>Subnet Address:<p class=right name=subAddressT><p class=left>Port A:<p class=right name=portAStatus> <p class="left">Color Order</p>
+<p class="right">
+  <select class="select" name="portApixOrder">
+    <option value="0">RGB</option>
+    <option value="1">RBG</option>
+    <option value="2">GRB</option>
+    <option value="3">GBR</option>
+    <option value="4">BRG</option>
+    <option value="5">BGR</option>
+  </select>
+</p>"
     #ifndef ONE_PORT
       "<p class=left>Port B:<p class=right name=portBStatus>"
     #endif

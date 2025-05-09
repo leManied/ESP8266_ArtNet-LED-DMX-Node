@@ -51,6 +51,7 @@ void ajaxHandle() {
         jsonReply["message"] = "Settings Saved";
 
     } else {
+      jsonReply["portApixOrder"] = deviceSettings.portApixOrder;
       jsonReply["success"] = 0;
       jsonReply["message"] = "Failed to save data.  Reload page and try again.";
     }
@@ -163,7 +164,11 @@ bool ajaxSave(uint8_t page, JsonObject& json) {
   
         if ((uint8_t)json["portAsub"] < 16)
         deviceSettings.portAsub = (uint8_t)json["portAsub"];
-  
+        
+        
+        if (json.containsKey("portApixOrder"))
+        deviceSettings.portApixOrder = uint8_t(json["portApixOrder"]);
+
         for (uint8_t x = 0; x < 4; x++) {
           if ((uint8_t)json["portAuni"][x] < 16)
             deviceSettings.portAuni[x] = (uint8_t)json["portAuni"][x];
