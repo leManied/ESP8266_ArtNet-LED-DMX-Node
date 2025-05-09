@@ -47,6 +47,9 @@ struct StoreStruct {
   // StoreStruct version
   char version[4];
 
+  uint8_t portApixOrder; // 0=RGB, 1=RBG, 2=GRB, etc.
+  uint8_t portBpixOrder;
+
   // Device settings:
   IPAddress ip, subnet, gateway, broadcast, hotspotIp, hotspotSubnet, hotspotBroadcast, dmxInBroadcast;
   bool dhcpEnable, standAloneEnable;
@@ -60,6 +63,17 @@ struct StoreStruct {
   uint16_t portApixFXstart, portBpixFXstart;
   uint8_t resetCounter, wdtCounter;
   
+  enum PixOrder {
+    PIXORDER_RGB = 0,
+    PIXORDER_RBG,
+    PIXORDER_GRB,
+    PIXORDER_GBR,
+    PIXORDER_BRG,
+    PIXORDER_BGR,
+    PIXORDER_MAX
+};
+
+
 } deviceSettings = {
   CONFIG_VERSION,
   

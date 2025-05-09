@@ -77,15 +77,18 @@ void ws2812Driver::setBuffer(uint8_t port, uint16_t startChan, uint8_t* data, ui
   memcpy(&a[startChan], data, size);
 }
 
-byte ws2812Driver::setPixel(uint8_t port, uint16_t pixel, uint8_t r, uint8_t g, uint8_t b) {
+byte ws2812Driver::setPixel(uint8_t port, uint16_t pixel, uint8_t r, uint8_t g, uint8_t b, uint8_t order) {
   uint8_t* a = buffer[port];
-  
   uint16_t chan = pixel * 3;
-
-  // ws2812 is GRB ordering
-  a[chan + 1] = r;
-  a[chan] = g;
-  a[chan + 2] = b;
+  switch(order) {
+      case PIXORDER_RGB: a[chan] = r; a[chan+1] = g; a[chan+2] = b; break;
+      case PIXORDER_RBG: a[chan] = r; a[chan+1] = b; a[chan+2] = g; break;
+      case PIXORDER_GRB: a[chan] = g; a[chan+1] = r; a[chan+2] = b; break;
+      case PIXORDER_GBR: a[chan] = g; a[chan+1] = b; a[chan+2] = r; break;
+      case PIXORDER_BRG: a[chan] = b; a[chan+1] = r; a[chan+2] = g; break;
+      case PIXORDER_BGR: a[chan] = b; a[chan+1] = g; a[chan+2] = r; break;
+  }
+  return 1;
 }
 
 byte ws2812Driver::setPixel(uint8_t port, uint16_t pixel, uint32_t colour) {
